@@ -18,6 +18,9 @@ pipeline {
     }
     stage ("Deploy") {
       steps {
+        sshagent(['ec2-login']) {
+            sh "ssh -o StrictHostKeyChecking=no ubuntu@13.234.30.6 docker images"
+          }
         echo "Deploying the application"
       }
     }
